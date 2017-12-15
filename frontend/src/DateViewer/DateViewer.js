@@ -9,7 +9,27 @@ class DateViewer extends Component {
     this.state = {
       config: {
         dateViewer: 'list'
-      }
+      },
+      dates: [
+        {
+          type: 'training',
+          day: '12.12.2025',
+          time: '20:00',
+          state: 'open'
+        },
+        {
+          type: 'training',
+          day: '12.12.2025',
+          time: '20:00',
+          state: 'open'
+        },
+        {
+          type: 'game',
+          day: '12.12.2025',
+          time: '20:00',
+          state: 'open'
+        }
+      ]
     }
   }
 
@@ -38,7 +58,7 @@ class DateViewer extends Component {
 
   renderListView() {
     return (
-      <ListView/>
+      <ListView dates={this.state.dates}/>
     );
   }
 
