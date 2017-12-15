@@ -13,6 +13,9 @@ class App extends Component {
       user: {
         name: 'Dennis Tester',
         mail: 'dennis@email.de'
+      },
+      config: {
+        dateViewer: 'default'
       }
     }
   }
@@ -25,7 +28,7 @@ class App extends Component {
         </header>
         <main>
           <Switch>
-            <Route exact path='/dates' component={DateViewer} />
+            <Route exact path='/dates' component={DateViewer} config={this.state.config}/>
             <Route exact path='/team' component={DateViewer} />
           </Switch>
         </main>
