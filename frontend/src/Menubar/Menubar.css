@@ -1,0 +1,57 @@
+menu {
+    background-color: #1E8C93;
+    width: 100%;
+}
+
+menu:after {
+    clear: both;
+    content: ' ';
+    display: block;
+}
+
+nav {
+    float: left;
+    padding: 15px 0;
+    width: 70%;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a,
+nav ul li a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #DBD8A2;
+}
+
+.userInfo {
+    background-color: #1E8C93;
+    color: #fff;
+    float: right;
+    min-width: 250px;
+    padding: 15px 0;
+    text-align: right;
+    width: 30%;
+}
+
+.userInfo ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.userInfo ul li a,
+.userInfo ul li a:hover,
+.userInfo ul li a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+.userInfo ul li a:hover {
+    color: #DBD8A2;
+}
