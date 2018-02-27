@@ -1,0 +1,59 @@
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container h2 {
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.date {
+    width: 33%;
+    float: left;
+}
+
+.date li.type {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.date li.state.open {
+    color: #cccc00;
+}
+
+.date li.state.available {
+    color: #00cc00;
+}
+
+.date li.state.unavailable {
+    color: #aa0000;
+}
+
+.date button {
+    padding: 7px 14px;
+    border: none;
+    min-width: 80px;
+    margin-right: 10px;
+    float: left;
+}
+
+.date button:hover {
+    cursor: pointer;
+}
+
+button.open {
+    background: #cccc00;
+    color: #fff;
+}
+
+button.available {
+    background: #00cc00;
+    color: #fff;
+}
+
+button.unavailable {
+    background: #aa0000;
+    color: #fff;
+}
