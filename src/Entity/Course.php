@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CourseRepository")
@@ -21,6 +24,29 @@ class Course
      * @ORM\Column(type="string")
      */
     private $name;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="courses")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $users;
+
+    /**
+     * @var ArrayCollection(Appointment)
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Appointment", mappedBy="course")
+     */
+    private $appointments;
+
+    /**
+     */
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+        $this->appointments = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -52,5 +78,56 @@ class Course
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function addUser($user)
+    {
+        $this->users->add($user);
+        $user->addCourse($this);
+    }
+
+    /**
+     * @param User $user
+     */
+    public function removeUser($user)
+    {
+        $this->users->remove($user);
+        $user->removeCourse($this);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAppointments()
+    {
+        return $this->appointments;
+    }
+
+
+    /**
+     * @param Appointment $appointment
+     */
+    public function addAppointment($appointment)
+    {
+        $this->appointments->add($appointment);
+    }
+
+    /**
+     * @param Appointment $appointment
+     */
+    public function removeAppointment($appointment)
+    {
+        $this->appointments->remove($appointment);
     }
 }

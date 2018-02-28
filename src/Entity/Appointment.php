@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AppointmentRepository")
@@ -30,6 +31,14 @@ class Appointment
      * @ORM\Column(type="string")
      */
     private $location;
+
+    /**
+     * @var Course
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Course", inversedBy="appointments")
+     * @JoinColumn(name="course_id", referencedColumnName="id")
+     */
+    private $course;
 
     /**
      * @return mixed
@@ -93,5 +102,21 @@ class Appointment
     public function setLocation($location)
     {
         $this->location = $location;
+    }
+
+    /**
+     * @return Course
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
+
+    /**
+     * @param Course $course
+     */
+    public function setCourse($course)
+    {
+        $this->course = $course;
     }
 }
