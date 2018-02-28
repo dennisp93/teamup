@@ -28,8 +28,7 @@ class Course
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="courses")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="courses")
      */
     private $users;
 

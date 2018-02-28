@@ -37,7 +37,7 @@ class User
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Course", inversedBy="users")
-     * @JoinColumn(name="course_id", referencedColumnName="id")
+     * @ORM\JoinTable(name="users_courses")
      */
     private $courses;
 
