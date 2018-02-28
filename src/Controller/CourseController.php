@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Course;
 use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -49,7 +50,14 @@ class CourseController extends Controller
      */
     public function addAction(Request $request)
     {
-        return new Response('Implement me', 300, []);
+        $course = new Course();
+        $course->setName($request->get('course_name'));
+
+        $manager = $this->getDoctrineManager();
+        $manager->persist($course);
+        $manager->flush();
+
+        return new JsonResponse("{'course':'" . $course->getName() . " was added.'}", 200, [], true);
     }
 
     /**
@@ -59,7 +67,17 @@ class CourseController extends Controller
      */
     public function saveAction(Request $request)
     {
-        return new Response('Implement me', 300, []);
+        $manager = $this->getDoctrineManager();
+        $course = $manager->getRepository('App:Course')->find($request->get('course_id'));
+
+        if ($course === null) {
+            return new JsonResponse("{'error':'course not found'}", 200, [], true);
+        }
+
+        $course->setName($request->get('course_name'));
+        $manager->flush();
+
+        return new JsonResponse("{'course':'" . $course->getName() . " was saved.'}", 200, [], true);
     }
 
     /**
@@ -69,7 +87,17 @@ class CourseController extends Controller
      */
     public function removeAction(Request $request)
     {
-        return new Response('Implement me', 300, []);
+        $manager = $this->getDoctrineManager();
+        $course = $manager->getRepository('App:Course')->find($request->get('course_id'));
+
+        if ($course === null) {
+            return new JsonResponse("{'error':'course not found'}", 200, [], true);
+        }
+
+        $manager->remove($course);
+        $manager->flush();
+
+        return new JsonResponse("{'course':'" . $course->getName() . " was removed.'}", 200, [], true);
     }
 
     /**
