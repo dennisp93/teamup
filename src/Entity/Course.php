@@ -120,6 +120,7 @@ class Course
     public function addAppointment($appointment)
     {
         $this->appointments->add($appointment);
+        $appointment->setCourse($this);
     }
 
     /**
@@ -128,5 +129,6 @@ class Course
     public function removeAppointment($appointment)
     {
         $this->appointments->remove($appointment);
+        $appointment->setCourse(null);
     }
 }

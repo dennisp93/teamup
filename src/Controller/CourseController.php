@@ -2,12 +2,10 @@
 namespace App\Controller;
 
 use App\Entity\Course;
-use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -20,7 +18,7 @@ class CourseController extends Controller
     /**
      * @param Request $request
      * @Route(name="getCourses", path="/get")
-     * @return Response
+     * @return JsonResponse
      */
     public function getAction(Request $request)
     {
@@ -46,7 +44,7 @@ class CourseController extends Controller
     /**
      * @param Request $request
      * @Route(name="addCourse", path="/add")
-     * @return Response
+     * @return JsonResponse
      */
     public function addAction(Request $request)
     {
@@ -63,7 +61,7 @@ class CourseController extends Controller
     /**
      * @param Request $request
      * @Route(name="saveCourse", path="/save")
-     * @return Response
+     * @return JsonResponse
      */
     public function saveAction(Request $request)
     {
@@ -83,7 +81,7 @@ class CourseController extends Controller
     /**
      * @param Request $request
      * @Route(name="removeCourse", path="/remove")
-     * @return Response
+     * @return JsonResponse
      */
     public function removeAction(Request $request)
     {
