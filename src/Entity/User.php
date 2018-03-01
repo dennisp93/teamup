@@ -41,10 +41,18 @@ class User
     private $courses;
 
     /**
+     * @var ArrayCollection(Appointment)
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="appointment")
+     */
+    private $participation;
+
+    /**
      */
     public function __construct()
     {
         $this->courses = new ArrayCollection();
+        $this->participation = new ArrayCollection();
     }
 
     /**
@@ -133,5 +141,31 @@ class User
     public function removeCourse($course)
     {
         $this->courses->remove($course);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
+    }
+
+    /**
+     * @param Participation $participation
+     */
+    public function addParticipation($participation)
+    {
+        $this->participation->add($participation);
+        $participation->setAppointment($this);
+    }
+
+    /**
+     * @param Participation $participation
+     */
+    public function removeParticipation($participation)
+    {
+        $this->participation->remove($participation);
+        $participation->setAppointment(null);
     }
 }
